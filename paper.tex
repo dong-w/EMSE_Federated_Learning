@@ -1,0 +1,170 @@
+
+\RequirePackage{rotating}
+\RequirePackage{fix-cm}
+\documentclass{svjour3}                     % onecolumn (standard format)
+%\documentclass[smallcondensed]{svjour3}     % onecolumn (ditto)
+%\documentclass[smallextended]{svjour3}       % onecolumn (second format)
+%\documentclass[twocolumn]{svjour3}          % twocolumn
+%
+\smartqed  % flush right qed marks, e.g. at end of proof
+\usepackage[table]{xcolor}
+\usepackage{wrapfig}
+\input{insbox}
+\usepackage{graphicx}
+\usepackage[misc,geometry]{ifsym}
+\usepackage{ulem}
+\usepackage{adjustbox}
+% \usepackage{emoji}
+\usepackage{framed}
+% \usapackage{caption}
+\usepackage[utf8]{inputenc}
+\usepackage{booktabs}
+%\usepackage{subfigure}
+%\usepackage{subcaption}
+\usepackage{tcolorbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{paralist}
+\usepackage{multirow}
+\usepackage{xspace}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage[graphicx]{realboxes}
+\usepackage{ifthen}
+\usepackage{url}
+\usepackage{fancybox}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{balance}
+\usepackage{ifthen}
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[linesnumbered,boxruled]{algorithm2e}
+\usepackage{algorithm2e}
+\usepackage{tablefootnote}
+\usepackage{comment}
+\usepackage{float}
+\usepackage{algorithmic}
+\usepackage{dirtytalk}
+\usepackage[numbers]{natbib}
+\usepackage{subfigure}
+\usepackage{tcolorbox}
+\definecolor{mygray}{gray}{0.6}
+\usepackage{scalerel,graphicx,xparse}
+
+\NewDocumentCommand\emojiThumbsUp{}{\scalerel*{\includegraphics{thumbsup.png}}{X}}
+\NewDocumentCommand\emojiThumbsDown{}{\scalerel*{\includegraphics{thumbs-down_1f44e.png}}{X}}
+\NewDocumentCommand\emojiTada{}{\scalerel*{\includegraphics{party-popper_1f389.png}}{X}}
+\NewDocumentCommand\emojiHeart{}{\scalerel*{\includegraphics{red-heart_2764-fe0f.png}}{X}}
+\NewDocumentCommand\emojiRocket{}{\scalerel*{\includegraphics{rocket_1f680.png}}{X}}
+\NewDocumentCommand\emojiConfused{}{\scalerel*{\includegraphics{confused-face_1f615.png}}{X}}
+\NewDocumentCommand\emojiEyes{}{\scalerel*{\includegraphics{eyes_1f440.png}}{X}}
+\NewDocumentCommand\emojiGrinning{}{\scalerel*{\includegraphics{grinning-face_1f600.png}}{X}}
+
+% \usepackage[colorinlistoftodos]{todonotes}
+\newcommand\todoV[2]{ {\colorbox{yellow}{\textcolor{red}{#1}}} {\todo[color=green!40]{\thesubsection. #2}}}
+\newcommand\revOne[2]{\textcolor{mygray}{\sout{#1}} {\textcolor{blue}{#2}}}
+\newcommand\todoU[2]{ {\colorbox{yellow}{\textcolor{red}{#1}}} {\todo[color=red!40]{\thesubsection. #2}}}
+\newcommand\todoL[2]{ {\colorbox{yellow}{\textcolor{red}{#1}}} {\todo[color=blue!40]{\thesubsection. #2}}}
+
+\def\blackwhitebar#1{%%
+  #1 {\color{black!100}\rule{#1mm/10}{8pt}}{\color{black!30}\rule{\WIDTHOFBAR - #1 mm/10}{8pt}}}
+  
+\newlength\WIDTHOFBAR
+\setlength\WIDTHOFBAR{1cm}
+
+\def\mybar#1{%%
+  {\color{gray}\rule{#1cm}{8pt}}}
+
+\newcommand\Mark[1]{{\textcolor{blue}{#1}}}
+\newcommand\raula[1]{{\textcolor{red}{#1}}}
+\newcommand\ishio[1]{{\textcolor{cyan}{#1}}}
+\newcommand\wang[1]{{\textcolor{purple}{#1}}}
+
+\usepackage[colorlinks = true,
+            linkcolor = black,
+            urlcolor  = black,
+            citecolor = black,
+            anchorcolor = black]{hyperref}
+
+
+\DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+% \newcommand\shade[1]{{\textcolor{purple}{S:#1}}}
+% \newcommand\wang[1]{{\textcolor{red}{W:#1}}}
+% \newcommand\raula[1]{{\textcolor{cyan}{R:#1}}}
+% \newcommand\pick[1]{{\textcolor{red}{P:#1}}}
+\newcommand{\conclusionbox}[1]{%
+	\vspace{1mm}
+	\noindent
+	\framebox[1.00\columnwidth][c]{%
+		\parbox[b]{0.95\columnwidth}{%
+			#1
+		}
+	}
+}
+
+\def\mybar#1{%%
+  {\color{gray}\rule{#1cm}{8pt}}}
+
+	\newcommand{\eg}{e.g.,}
+	\newcommand{\ie}{i.e.,}
+	\newcommand{\MCR}{Tool-based Code Review}
+
+	\newcommand{\RqOne}{RQ1: \emph{Does the emoji reaction used in the review discussion correlate with review time?}}
+	\newcommand{\RqTwo}{RQ2: \emph{Does a PR submitted by a first-time contributor receive more emoji reactions?}}
+	
+% 		\newcommand{\RqOne}{RQ1: \emph{How is the knowledge built when }\xspace}
+	
+	\newcommand{\RqThree}{RQ3: \emph{What is the relationship between the intention of comments and their emoji reaction?}}
+	
+	\newcommand{\RqFour}{RQ4: \emph{Is emoji reaction consistent with comment sentiment?}\xspace}
+
+    \newcommand{\Target}{Sender }
+    \newcommand{\target}{sender }
+    \newcommand{\Source}{Receiver }
+    \newcommand{\source}{receiver }
+    \newcommand{\Indirect}{Indirect }
+    \newcommand{\Directreq}{Direct-wReq }
+    \newcommand{\Direct}{Direct }
+    \newcommand{\Directdup}{Direct-Dup }
+%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%Teyon Son
+
+\title{}
+% \subtitle{A case study of NPM}
+%\titlerunning{Short form of title}        % if too long for running head
+% \author{Dong Wang \Letter\and Tao Xiao \and Teyon Son \and Raula Gaikovina Kula  \and Takashi Ishio \and Kenichi Matsumoto %etc.
+% }
+
+% \institute{
+%     \Letter~Corresponding author - Dong Wang
+%     \at Kyushu University, Japan\\
+%     \email{wang.dong.vt8@is.naist.jp}
+%      \and
+%     Tao Xiao, Teyon Son, Raula Gaikovina Kula, Takashi Ishio, Kenichi Matsumoto
+%     \at Nara Institute of Science and Technology, Japan\\
+%     \email{\{tao.xiao.ts2,son.teyon.sr7,raula-k,ishio,matumoto\}@is.naist.jp}
+% }
+
+\date{Received: date / Accepted: date}
+% The correct dates will be entered by the editor
+\maketitle
+\begin{abstract}
+
+\keywords{}
+
+\end{abstract}
+
+\section{Introduction}
+\label{intro}
+
+
+\bibliographystyle{spbasic}
+\bibliography{myref}
+
+\end{document}
+
+

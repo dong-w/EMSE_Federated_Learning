@@ -1,0 +1,79 @@
+\section{Introduction}
+\label{intro}
+
+% 1.Code review is important (Paragraph1)
+% 2. Doing effective code review needs inforamtion and understanding, but challenges exist in obtaining information (lightly touch)
+% 3. Link sharing is a practice for develoeprs to deliver inforamtion (Hirao and Jiang) talk about the difference and gaps 
+% 4. Our paper is to .....
+
+Software code reviews serve as quality assurance for software teams~\citep{Huizinga2007AutomatedDP,Rigby_2011}.
+From being a formal code inspection process conducted by face-to-face meetings~\citep{Fagan_1976}, nowadays the Modern Code Review (MCR) process becomes more flexible with asynchronous collaboration through an online tool (such as Gerrit\footnote{\url{https://www.gerritcodereview.com/}}, Codestriker\footnote{\url{http://codestriker.sourceforge.net/}}, and ReviewBoard\footnote{\url{https://www.reviewboard.org/}}).
+These online tools are now widely adopted in both open source and proprietary software projects~\citep{FSE2013_Rigby, Google_2018}.
+Not only improving the overall quality of a patch (i.e., software changes), \cite{Bacchelli_ICSE2013} also reported that MCR also serves as an effective mechanism to increase awareness and share information: \textit{“Code reviews are good FYIs [for your information].”}
+
+
+An effective review requires proper understanding.
+However, it is challenging to identify and acquire
+the needed information to have a proper understanding to conduct a review.
+This is especially a case for a large software project like OpenStack, which has code reviews of over 20 million lines of codes that are submitted by over 100,000 contributors spread more than 600 code repositories~\citep{minghui_icse2020}.
+\citet{Information_2018} find that during reviews, reviewers often request additional information about
+correct understanding, alternative solution, to improve patch quality.
+\citet{confusion_saner_2019} report that reviewers often suffer from confusion due to a lack of information about the intention of a patch (i.e., a rationale for a change).
+
+Recent work points out that the link shared in the review discussion can be used to provide information related to a review. 
+\citet{hirao2019fse} show that shared links between reviews can be used to indicate the information about patch dependency, broader context, and alternative solution.
+However, the other types of links other than review links were not studied in the work of \citet{hirao2019fse}.
+\textcolor{blue}{On the other hand, \citet{link_sharing_2018} conducted a  quantitative analysis to find developers that share various types of links in ten GitHub projects.
+However, this study does not systematically investigate the correlation between the shared links and the review process, and lacks of qualitative analysis of why these various types of links are shared.}
+
+% Recent work points out that the link shared in the review discussion can be used to provide information related to a \textcolor{blue}{review}. \textcolor{blue}{
+% Hirao et al. (2019) show that shared links between reviews can be used to indicate the information about patch dependency, broader context, and alternative solution.
+% They did not extend the types of links beyond reviews, hence, other links source (both internal and external to the project) are not included in their study.
+% Jiang et al. (2019) study ten GitHub projects and find that developers share different types of shared links.
+% They did not consider the intention of sharing a link, which can be different for the same type of link. 
+% We hypothesize that sharing links may help developers fulfill the information needs, as it is still unclear about what types of information could be fulfilled by the link sharing, and how the link sharing influences a code review process.}
+
+Based on the findings of prior work (Hirao et al., 2019), we hypothesize that sharing links may help developers fulfill the information needs. Yet, it is still unclear about what types of information could be fulfilled by these various types of links. \textcolor{blue}{To fill this gap, this work aims to explore the prevalence of link sharing, systematically investigate the correlation between link sharing and review time, and qualitatively investigate what are the intentions of sharing links.}
+In this paper, the intention is defined as the intention of sharing a link to meet a certain type of information needed during code review.
+Through a case study of the OpenStack and Qt projects \textcolor{blue}{(two large-scale and thriving open source projects with globally distributed teams that actively perform code reviews)}, we identify 19,268 reviews that have 34,264 links shared during review discussions.
+% We then perform a mixed-method study to analyze 400 links posted into the review discussion threads.
+We formulate three research questions to guide our study: 
+\begin{itemize}
+    \item \textbf{\RqOne}
+    %\cite{link_sharing_2018} studied the prevalence and the kinds of link sharing in the pull based review setting with 10 code repositories from GitHub.
+    It is not yet known how a project of repositories uses link sharing in their communities.
+    % , with the hypothesis that projects in a shared ecosystem are likely to link common information.
+    Using a sample of well-known OpenStack and Qt projects, we would like to investigate the trend of link sharing, common domains in the project, and the link target types.
+    \item \textbf{\RqTwo} Prior studies~\citep{Olga_2016, Shopify_2018} analyzed the impact of technical and non-technical factors on the review process (e.g., review outcome, review time).
+    However, little is known about whether or not the practice of sharing links can be correlated with review time.
+    It is possible that link sharing may shorten the review time as it provides the required information to a review, which might help reviewers to conduct a review faster.
+    To address this RQ, we conduct a statistical analysis using a non-linear regression model to analyze a correlation between link sharing and review time.
+    \item \textbf{\RqThree} Previous work~\citep{Information_2018} has identified different types of information that are needed by reviewers when conducting a review. 
+    Yet, little is known to what extent can link sharing meets such information needs.
+    Hence, we aim to investigate the intention behind link sharing in order to better understand the role and usefulness of link sharing during reviews.
+\end{itemize}
+
+The key results of each RQ are as follow:
+\textit{For RQ1}, our results show that in the past five years, 25\% and 20\% of the reviews have at least one link shared in a review discussion within the OpenStack and Qt.
+93\% and 80\% of shared links are the internal links that are directly related to the project.
+Importantly, although the majority of the internal links are referencing to reviews, bug reports, and source code are also shared in review discussions.
+% We find that the common target types of external links are tutorial and API documentation.
+\textit{For RQ2}, our non-linear regression model results show that the internal link has a significant correlation with the code review time.  
+However, the  external  link  is  not  significantly  correlated,  for OpenStack and Qt.
+Furthermore, we observe that the number of internal links has an increasing relationship with the review time.
+\textit{For RQ3}, we identify seven intentions of sharing links: (1) Providing Context, (2) Elaborating, (3) Clarifying, (4) Explaining Necessity, (5) Proposing Improvement, (6) Suggesting Experts, and (7) Informing Splitted Request.
+Specifically, for the internal links, we observe that the most popular intention is to provide context.
+While for the external links, to elaborate the review discussions (i.e., provide a reference or related information) is the most common intention.
+
+The results lead us to conclude that link sharing is increasingly used as a mechanism of sharing information in a code review process, the number of internal links has a positive correlation with the review time, and the intention of link sharing is often used to provide context understanding.
+\textit{For patch authors}, they should provide a clear context of the patch by sharing links (i.e., containing implementation related information) for reviewer teams to better understand a patch.
+\textit{For review teams}, link sharing should be encouraged, as results indicate that it can fulfill information needs and contains crucial knowledge to assist the author, which will support a more efficient review process.
+\textit{For researchers}, with the increasing usage of links, there is an opportunity for tool support for suggesting shared links to retrieve useful information for both patch authors and review teams.
+The study contributions are three-fold: (i) a large quantitative and qualitative study on link sharing on the MCR process, (ii) a taxonomy of seven intentions of sharing links, and (iii) a full replication of our study, including the scripts and datasets.~\footnote{https://github.com/NAIST-SE/LinkIntentioninCR/}
+
+The remainder of this paper is organized as follows: Section \ref{sec:background} introduces the background of the study. 
+Section \ref{sec:case_study_design} describes the studied projects, the data preparation, and the analysis approach for each research question.
+Section \ref{sec:results} reports the results of our empirical study. 
+Section \ref{sec:implication} discusses the implications from our findings. 
+Section \ref{sec:threats} discloses the threats to validity and Section \ref{sec:related_work} presents the related work. 
+Finally, we conclude the paper in Section \ref{sec:conclusion}.
